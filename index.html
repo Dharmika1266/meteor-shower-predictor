@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meteor Shower Predictor</title>
+    <link rel="stylesheet" href="/static/style.css">
+    
+    <style>
+        /* Center the graphs */
+        .center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-top: 20px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Meteor Shower Predictor</h1>
+    </header>
+
+    <main>
+        <form action="/" method="POST">
+            <label for="year">Enter Year (e.g., 2025):</label>
+            <input type="number" id="year" name="year" required>
+
+            <label for="month">Enter Month (1-12):</label>
+            <input type="number" id="month" name="month" min="1" max="12" required>
+
+            <button type="submit">Predict</button>
+        </form>
+
+        <!-- Display the prediction if available -->
+        {% if prediction %}
+    <h2>Meteor Shower Expected: {{ prediction }}</h2>
+    <h3>Graphs:</h3>
+    <img src="{{ url_for('static', filename='meteor_shower_by_month.png') }}" alt="Meteor Shower by Month">
+    <img src="{{ url_for('static', filename='meteor_shower_by_year.png') }}" alt="Meteor Shower by Year">
+{% endif %}
+
+    </main>
+</body>
+</html>
